@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1328">
+<meta name="description" content="MantraMala — आधुनिक नाम जप, माला और ध्यान अनुभव">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon.svg">
+<title>MantraMala — नाम जप • ध्यान • साधना</title>
+<style>
+:root{
+  --bg:#070b16; --panel:#10182a; --panel2:#151f35; --text:#f8f5ed; --muted:#aab3c6;
+  --gold:#e8b75a; --gold2:#ffd98a; --violet:#8e72ff; --cyan:#63d9ff; --danger:#ff7893;
+  --line:rgba(255,255,255,.10); --shadow:0 24px 70px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:
+ radial-gradient(900px 500px at 50% -100px,rgba(232,183,90,.14),transparent 65%),
+ radial-gradient(600px 500px at 100% 45%,rgba(99,217,255,.08),transparent 70%),
+ var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans Devanagari",sans-serif;min-height:100vh}
+button,input{font:inherit} button{cursor:pointer}
+.app{width:min(100%,560px);margin:auto;min-height:100vh;padding:16px 16px 34px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:4px 2px 18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
+.brand-mark{width:40px;height:40px;border:1px solid rgba(232,183,90,.5);border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#1b2438,#0a0f1d);box-shadow:inset 0 1px rgba(255,255,255,.12)}
+.brand-mark svg{width:24px}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:600;margin-top:2px}
+.iconbtn{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.04);color:#fff;display:grid;place-items:center}
+.hero{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:28px 22px;background:
+linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015)),linear-gradient(140deg,#16213a,#0b1020 65%);
+box-shadow:var(--shadow);text-align:center}
+.hero:before{content:"";position:absolute;inset:-100px;background:radial-gradient(circle at 50% 25%,rgba(232,183,90,.23),transparent 36%);pointer-events:none}
+.hero>*{position:relative}.om{font-size:52px;color:var(--gold2);text-shadow:0 0 35px rgba(232,183,90,.28);line-height:1}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:39px;margin:10px 0 3px;letter-spacing:.3px}
+.tag{color:#d9d4c8;font-size:14px}.hero p{color:var(--muted);line-height:1.6;margin:16px auto 20px;max-width:390px}
+.primary{border:0;border-radius:16px;padding:14px 22px;color:#17120a;font-weight:800;background:linear-gradient(135deg,var(--gold2),var(--gold));box-shadow:0 10px 30px rgba(232,183,90,.18)}
+.section-title{display:flex;align-items:end;justify-content:space-between;margin:28px 2px 12px}.section-title h2{margin:0;font-size:18px}.section-title span{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.deity{position:relative;overflow:hidden;min-height:230px;border:1px solid var(--line);border-radius:22px;background:#11192a;padding:0;text-align:left;color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.24)}
+.deity img{width:100%;height:210px;display:block;object-fit:cover;object-position:center 35%;filter:saturate(1.03)}
+.deity:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(4,7,14,.9));pointer-events:none}
+.deity-info{position:absolute;left:14px;right:14px;bottom:12px;z-index:2}.deity-info b{font-size:17px}.deity-info small{display:block;color:#d8dced;margin-top:2px}
+.badge{display:inline-flex;margin-top:7px;padding:5px 8px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.13);font-size:10px;color:#f4d994}
+.custom{margin-top:12px;padding:14px;border:1px dashed rgba(232,183,90,.4);border-radius:18px;background:rgba(232,183,90,.04)}
+.row{display:flex;gap:9px}.input{width:100%;border:1px solid var(--line);background:#0b1221;color:#fff;border-radius:13px;padding:13px;outline:none}.input:focus{border-color:rgba(232,183,90,.6)}
+.custom button{white-space:nowrap}
+.hidden{display:none!important}
+.screen{min-height:100vh}
+.jap-head{display:flex;align-items:center;gap:10px;padding:4px 0 13px}.jap-head .title{flex:1}.title b{font-size:16px}.title small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.back{font-size:22px}
+.mini-actions{display:flex;gap:8px}.mini-actions .iconbtn{width:38px;height:38px}
+.visual{position:relative;border-radius:30px;overflow:hidden;border:1px solid var(--line);min-height:310px;display:grid;place-items:center;background:#111827;box-shadow:var(--shadow)}
+.visual .deity-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 34%;filter:saturate(1.04)}
+.visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,8,17,.08),rgba(4,8,17,.18) 40%,rgba(4,8,17,.88));}
+.deity-caption{position:absolute;z-index:2;left:18px;bottom:18px;text-align:left}.deity-caption b{font-family:Georgia,serif;font-size:29px}.deity-caption small{display:block;color:#eee;margin-top:4px}
+.mala-wrap{margin:18px 0 4px;border-radius:30px;padding:18px 10px 16px;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid var(--line);text-align:center;position:relative;overflow:hidden}
+.mala{position:relative;width:min(330px,82vw);height:min(330px,82vw);margin:auto}
+.bead{position:absolute;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b77938 0 12%,#6d3e1c 30%,#2b1710 72%,#160d09);box-shadow:0 2px 4px #000, inset 1px 1px 2px rgba(255,255,255,.2);transform:translate(-50%,-50%);transition:opacity .35s,filter .35s,transform .45s}
+.bead.used{opacity:0;filter:blur(8px);transform:translate(-50%,-50%) scale(1.8)}
+.bead.current{box-shadow:0 0 0 3px rgba(255,217,138,.14),0 0 22px rgba(232,183,90,.7),inset 1px 1px 2px rgba(255,255,255,.25)}
+.mala-center{position:absolute;inset:24% 24%;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#25203a,#0e1527 70%);border:1px solid rgba(232,183,90,.28);box-shadow:inset 0 0 40px rgba(232,183,90,.08)}
+.count{font-size:48px;font-weight:900;letter-spacing:-2px}.count small{display:block;font-size:12px;letter-spacing:1px;color:var(--muted);font-weight:600}
+.mala-label{margin-top:-3px;color:#d8d4ca;font-size:12px}.progress{height:5px;border-radius:99px;background:rgba(255,255,255,.08);margin:13px 12px 0;overflow:hidden}.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .3s}
+.mode-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:13px 0}.mode{border:1px solid var(--line);border-radius:17px;padding:14px 12px;background:rgba(255,255,255,.04);color:#fff}.mode.active{border-color:rgba(99,217,255,.55);background:rgba(99,217,255,.08)}.mode b{display:block;font-size:14px}.mode small{color:var(--muted)}
+.tap{width:100%;border:1px solid rgba(232,183,90,.55);border-radius:22px;padding:18px;background:linear-gradient(145deg,#e9bc64,#b97a28);color:#1a1208;font-size:19px;font-weight:900;box-shadow:0 16px 35px rgba(232,183,90,.18);touch-action:manipulation}
+.tap:active{transform:scale(.985)}
+.voice-status{margin-top:10px;padding:11px 13px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);font-size:12px;color:var(--muted);text-align:center;min-height:42px}
+.voice-status.listening{color:#a9f3ff;border-color:rgba(99,217,255,.4);box-shadow:0 0 25px rgba(99,217,255,.08)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px}.stat{padding:12px 8px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.035);text-align:center}.stat b{display:block;font-size:17px}.stat small{color:var(--muted);font-size:10px}
+.result{margin-top:14px;border:1px solid rgba(232,183,90,.3);border-radius:22px;padding:18px;background:linear-gradient(145deg,rgba(232,183,90,.10),rgba(255,255,255,.025));text-align:center}.result h3{margin:0 0 8px;font-size:20px}.result p{margin:5px 0;color:#d7d3ca;font-size:13px}.result strong{color:var(--gold2)}
+.dashboard{margin-top:24px;padding:18px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.035)}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.dash-card{padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.12)}.dash-card b{font-size:20px}.dash-card small{display:block;color:var(--muted);margin-top:3px}
+footer{padding:30px 4px 0;text-align:center;color:#68738a;font-size:11px;line-height:1.6}
+@media(max-width:380px){.grid{gap:9px}.deity img{height:190px}.count{font-size:42px}}
+</style>
+</head>
+<body>
+<div id="app" class="app"></div>
+<script>
+const DEITIES = {
+  radha:{id:'radha',name:'श्री राधा',mantra:'राधा राधा',short:'राधे राधे',img:'assets/radha.jpg'},
+  ram:{id:'ram',name:'श्री राम',mantra:'श्री राम',short:'राम राम',img:'assets/ram.jpg'},
+  shiv:{id:'shiv',name:'महादेव',mantra:'ॐ नमः शिवाय',short:'शिव शिव',img:'assets/shiv.jpg'},
+  krishna:{id:'krishna',name:'श्री कृष्ण',mantra:'हरे कृष्ण',short:'कृष्ण कृष्ण',img:'assets/krishna.jpg'},
+  hanuman:{id:'hanuman',name:'हनुमान जी',mantra:'जय हनुमान',short:'हनुमान हनुमान',img:'assets/hanuman.jpg'},
+  ganesh:{id:'ganesh',name:'श्री गणेश',mantra:'ॐ गं गणपतये नमः',short:'गणेश गणेश',img:'assets/ganesh.jpg'}
+};
+const KEY='mantraMalaStateV2';
+let state=JSON.parse(localStorage.getItem(KEY)||'null')||{total:0,today:0,sessions:0,lastDate:new Date().toDateString(),history:[]};
+if(state.lastDate!==new Date().toDateString()){state.today=0;state.lastDate=new Date().toDateString();}
+let session={deity:null,count:0,target:108,start:0,elapsed:0,voice:false,listening:false,recognizer:null,finalSeen:''};
+let timer=null;
+
+function save(){localStorage.setItem(KEY,JSON.stringify(state));}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function omSvg(){return `<svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="30" stroke="#e8b75a" opacity=".45"/><path d="M18 31c0-9 13-15 20-7 5 6 1 13-5 14-7 1-11-5-8-9 3-4 10-2 10 3 0 6-7 10-7 10" stroke="#ffd98a" stroke-width="3" stroke-linecap="round"/><path d="M37 18c6 1 9 6 9 12" stroke="#ffd98a" stroke-width="3" stroke-linecap="round"/></svg>`}
+
+function home(){
+  stopVoice();
+  document.getElementById('app').innerHTML=`
+  <div class="topbar"><div class="brand"><div class="brand-mark">${omSvg()}</div><div>MantraMala<small>नाम जप • ध्यान • साधना</small></div></div><button class="iconbtn" id="statsBtn" aria-label="साधना">⌁</button></div>
+  <section class="hero"><div class="om">ॐ</div><h1>MantraMala</h1><div class="tag">नाम जप को बनाएं एक सुंदर साधना</div><p>अपने आराध्य का चयन करें और बटन या अपनी आवाज़ से जप करें। हर जप के साथ माला का एक मनका प्रकाश में विलीन होता जाएगा।</p><button class="primary" id="startFirst">साधना शुरू करें&nbsp; →</button></section>
+  <div class="section-title"><h2>अपने आराध्य का चयन करें</h2><span>6 आराध्य</span></div>
+  <div class="grid">${Object.values(DEITIES).map(d=>`<button class="deity" data-id="${d.id}"><img src="${d.img}" alt="${esc(d.name)}"><div class="deity-info"><b>${esc(d.name)}</b><small>${esc(d.mantra)}</small><span class="badge">108 जप • Voice + Tap</span></div></button>`).join('')}</div>
+  <div class="custom"><div style="font-size:13px;font-weight:800;margin-bottom:8px">अपना मंत्र</div><div class="row"><input class="input" id="customMantra" placeholder="जैसे — जय श्री राम"><button class="primary" id="customBtn">जप</button></div></div>
+  <div class="dashboard"><div class="section-title" style="margin:0 0 10px"><h2>मेरी साधना</h2><span>इस डिवाइस पर सुरक्षित</span></div><div class="dash-grid"><div class="dash-card"><b>${state.today.toLocaleString('en-IN')}</b><small>आज के जप</small></div><div class="dash-card"><b>${state.total.toLocaleString('en-IN')}</b><small>कुल जप</small></div><div class="dash-card"><b>${Math.floor(state.today/108).toLocaleString('en-IN')}</b><small>आज की पूर्ण माला</small></div><div class="dash-card"><b>${state.sessions.toLocaleString('en-IN')}</b><small>साधना सत्र</small></div></div></div>
+  <footer>MantraMala एक client-side devotional tool है। आपका जप डेटा इसी browser में रहता है। Voice सुविधा आपके browser की speech-recognition support पर निर्भर करती है।</footer>`;
+  document.querySelectorAll('.deity').forEach(b=>b.onclick=()=>start(b.dataset.id));
+  document.getElementById('customBtn').onclick=()=>{let v=document.getElementById('customMantra').value.trim();if(v)start('custom',v)};
+  document.getElementById('startFirst').onclick=()=>start('radha');
+  document.getElementById('statsBtn').onclick=()=>dashboard();
+}
+function dashboard(){
+  const hist=state.history.slice(-8).reverse();
+  document.getElementById('app').innerHTML=`<div class="topbar"><button class="iconbtn" id="back">←</button><div style="font-weight:800">मेरी साधना</div><div></div></div>
+  <div class="dashboard" style="margin-top:0"><div class="dash-grid">
+  <div class="dash-card"><b>${state.today.toLocaleString('en-IN')}</b><small>आज के जप</small></div>
+  <div class="dash-card"><b>${state.total.toLocaleString('en-IN')}</b><small>कुल जप</small></div>
+  <div class="dash-card"><b>${Math.floor(state.today/108).toLocaleString('en-IN')}</b><small>आज की माला</small></div>
+  <div class="dash-card"><b>${state.sessions.toLocaleString('en-IN')}</b><small>सत्र</small></div></div></div>
+  <div class="section-title"><h2>हाल की साधना</h2></div>
+  <div>${hist.length?hist.map(h=>`<div class="stat" style="display:flex;justify-content:space-between;margin:8px 0;text-align:left"><div><b style="font-size:14px">${esc(h.name)}</b><small>${new Date(h.at).toLocaleString('hi-IN')}</small></div><strong>${h.count} जप</strong></div>`).join(''):`<div class="voice-status">अभी कोई सत्र पूरा नहीं हुआ।</div>`}</div>`;
+  document.getElementById('back').onclick=home;
+}
+function start(id,customText){
+  stopVoice();
+  const d=id==='custom'?{id:'custom',name:'आपका मंत्र',mantra:customText,short:customText,img:null}:DEITIES[id];
+  session={deity:d,count:0,target:108,start:Date.now(),elapsed:0,voice:false,listening:false,recognizer:null,finalSeen:''};
+  renderJap();
+}
+function renderJap(){
+  const d=session.deity;
+  document.getElementById('app').innerHTML=`<div class="jap-head"><button class="iconbtn back" id="back">←</button><div class="title"><b>${esc(d.name)}</b><small>${esc(d.mantra)}</small></div><div class="mini-actions"><button class="iconbtn" id="reset">↻</button></div></div>
+  ${d.img?`<div class="visual"><img class="deity-photo" src="${d.img}" alt="${esc(d.name)}"><div class="deity-caption"><b>${esc(d.name)}</b><small>${esc(d.mantra)}</small></div></div>`:`<div class="visual" style="min-height:190px;background:radial-gradient(circle at 50% 35%,rgba(232,183,90,.22),transparent 45%),#111827"><div class="deity-caption" style="position:relative;left:auto;bottom:auto;text-align:center"><b>${esc(d.name)}</b><small>${esc(d.mantra)}</small></div></div>`}
+  <div class="mala-wrap"><div class="mala" id="mala"><div class="mala-center"><div class="count" id="count">0<small>जप</small></div></div></div><div class="mala-label"><span id="targetText">0 / 108</span> • रुद्राक्ष माला</div><div class="progress"><i id="prog"></i></div></div>
+  <div class="mode-row"><button class="mode active" id="tapMode">👆 <b>स्पर्श से जप</b><small>हर टैप = 1 जप</small></button><button class="mode" id="voiceMode">🎙️ <b>बोलकर जप</b><small>मंत्र बोलें और count होगा</small></button></div>
+  <button class="tap" id="tap">ॐ &nbsp; जप करें</button>
+  <div class="voice-status" id="voiceStatus">बोलकर जप के लिए Voice Mode चुनें</div>
+  <div class="stats"><div class="stat"><b id="elapsed">00:00</b><small>समय</small></div><div class="stat"><b id="rpm">0</b><small>जप / मिनट</small></div><div class="stat"><b id="malaCount">0</b><small>पूर्ण माला</small></div></div>
+  <div id="result"></div>`;
+  buildMala(); bindJap(); tick();
+}
+function buildMala(){
+  const wrap=document.getElementById('mala'); 
+  for(let i=0;i<108;i++){
+    const a=(i/108)*Math.PI*2-Math.PI/2, r=46;
+    const b=document.createElement('span');b.className='bead';b.dataset.i=i;
+    b.style.left=(50+r*Math.cos(a))+'%';b.style.top=(50+r*Math.sin(a))+'%';
+    wrap.appendChild(b);
+  }
+}
+function bindJap(){
+  document.getElementById('back').onclick=()=>{stopVoice();home()};
+  document.getElementById('reset').onclick=()=>{stopVoice();start(session.deity.id,session.deity.mantra)};
+  document.getElementById('tap').onclick=()=>increment(1,'tap');
+  document.getElementById('tapMode').onclick=()=>setMode(false);
+  document.getElementById('voiceMode').onclick=()=>setMode(true);
+}
+function setMode(v){
+  session.voice=v;
+  document.getElementById('tapMode').classList.toggle('active',!v);
+  document.getElementById('voiceMode').classList.toggle('active',v);
+  const tap=document.getElementById('tap');
+  tap.style.display=v?'none':'block';
+  if(v) startVoice(); else stopVoice();
+}
+function normalize(s){
+ return s.toLowerCase().replace(/[।,.!?;:]/g,' ').replace(/\s+/g,' ').trim();
+}
+function mantraVariants(){
+ const d=session.deity, arr=[d.mantra,d.short,d.name];
+ if(d.id==='radha')arr.push('radha radha','राधा राधा','राधे राधे');
+ if(d.id==='ram')arr.push('shri ram','jai shri ram','श्री राम','जय श्री राम','ram ram','राम राम');
+ if(d.id==='shiv')arr.push('om namah shivay','om namah shivaya','ॐ नमः शिवाय','shiv shiv','शिव शिव');
+ if(d.id==='krishna')arr.push('hare krishna','हरे कृष्ण','krishna krishna','कृष्ण कृष्ण');
+ if(d.id==='hanuman')arr.push('jai hanuman','जय हनुमान','hanuman hanuman','हनुमान हनुमान');
+ if(d.id==='ganesh')arr.push('om gam ganapataye namah','ॐ गं गणपतये नमः','ganesh ganesh','गणेश गणेश');
+ return [...new Set(arr.map(normalize).filter(Boolean))].sort((a,b)=>b.length-a.length);
+}
+function countOccurrences(text){
+ const n=normalize(text), vars=mantraVariants();
+ let total=0, remaining=n;
+ for(const v of vars){
+   let pos=0;
+   while((pos=remaining.indexOf(v,pos))>-1){total++;remaining=remaining.slice(0,pos)+' '.repeat(v.length)+remaining.slice(pos+v.length);pos+=v.length;}
+ }
+ // If user speaks only a deity name, each occurrence is a japa.
+ if(total===0){
+   const token=normalize(session.deity.name).split(' ')[0];
+   if(token.length>2){const re=new RegExp(token.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g');total=(n.match(re)||[]).length}
+ }
+ return total;
+}
+function startVoice(){
+ const Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
+ const status=document.getElementById('voiceStatus');
+ if(!Speech){status.textContent='इस browser में Voice Recognition उपलब्ध नहीं है। Chrome/Edge में Voice Mode आज़माएँ।';return}
+ const r=new Speech();session.recognizer=r;r.lang='hi-IN';r.continuous=true;r.interimResults=false;r.maxAlternatives=1;
+ r.onstart=()=>{session.listening=true;status.classList.add('listening');status.textContent='🎙️ सुन रहा हूँ… अपना मंत्र बोलें';};
+ r.onresult=e=>{
+   for(let i=e.resultIndex;i<e.results.length;i++){
+     if(!e.results[i].isFinal)continue;
+     const txt=e.results[i][0].transcript||'';
+     if(txt===session.finalSeen)continue; session.finalSeen=txt;
+     const n=countOccurrences(txt);
+     if(n>0){increment(n,'voice');status.textContent=`सुना: “${txt}”  •  +${n} जप`;}
+     else status.textContent=`सुना: “${txt}”  •  मंत्र नहीं मिला`;
+   }
+ };
+ r.onerror=e=>{session.listening=false;status.classList.remove('listening');status.textContent='Voice error: '+(e.error||'microphone');};
+ r.onend=()=>{session.listening=false;status.classList.remove('listening');if(session.voice&&session.count<session.target)setTimeout(()=>{try{r.start()}catch{}} ,250)};
+ try{r.start()}catch{}
+}
+function stopVoice(){if(session.recognizer){try{session.recognizer.onend=null;session.recognizer.stop()}catch{}session.recognizer=null}}
+function increment(n,source){
+ if(session.count>=session.target)return;
+ const old=session.count;session.count=Math.min(session.target,session.count+n);
+ const diff=session.count-old;
+ state.total+=diff;state.today+=diff;save();
+ for(let i=old;i<session.count;i++){const b=document.querySelector(`.bead[data-i="${i}"]`);if(b){b.classList.add('used');setTimeout(()=>b.remove(),450)}}
+ const current=document.querySelector(`.bead[data-i="${session.count}"]`);if(current)current.classList.add('current');
+ updateUi();
+ if(session.count>=session.target)complete();
+}
+function updateUi(){
+ const c=session.count;document.getElementById('count').firstChild.textContent=c;
+ document.getElementById('targetText').textContent=`${c} / ${session.target}`;
+ document.getElementById('prog').style.width=(c/session.target*100)+'%';
+ document.getElementById('malaCount').textContent=Math.floor(c/108);
+ const mins=Math.max((Date.now()-session.start)/60000,1/60);document.getElementById('rpm').textContent=Math.round(c/mins);
+}
+function tick(){
+ clearInterval(timer);timer=setInterval(()=>{if(!document.getElementById('elapsed'))return;const sec=Math.floor((Date.now()-session.start)/1000);document.getElementById('elapsed').textContent=new Date(sec*1000).toISOString().slice(14,19);updateUi()},500);
+}
+function complete(){
+ stopVoice();session.elapsed=Math.floor((Date.now()-session.start)/1000);state.sessions++;state.history.push({name:session.deity.name,count:session.count,seconds:session.elapsed,at:new Date().toISOString()});if(state.history.length>40)state.history.shift();save();
+ const rpm=Math.round(session.count/Math.max(session.elapsed/60,1/60));
+ document.getElementById('result').innerHTML=`<div class="result"><h3>✨ एक माला पूर्ण</h3><p><strong>${session.count}</strong> जप पूरे हुए</p><p>समय: <strong>${formatTime(session.elapsed)}</strong> • गति: <strong>${rpm} जप/मिनट</strong></p><button class="primary" id="again" style="margin-top:10px">नई माला शुरू करें →</button></div>`;
+ document.getElementById('again').onclick=()=>start(session.deity.id,session.deity.mantra);
+ document.getElementById('tap').style.display='none';
+}
+function formatTime(s){const m=Math.floor(s/60),sec=s%60;return String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')}
+home();
+</script>
+</body>
+</html>
